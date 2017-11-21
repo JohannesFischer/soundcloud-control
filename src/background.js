@@ -40,7 +40,7 @@ function createScript(func, actionName = '') {
 
 function likeCurrentSong() {
   const func = () => {
-    const button = document.querySelector('.playControls .sc-button-like:not(.sc-button-selected)');
+    const button = document.querySelector('.playControls__soundBadge .sc-button-like:not(.sc-button-selected)');
 
     if (button) {
       button.click();
