@@ -1,5 +1,5 @@
 {
-  "name": "scc",
+  "name": "soundcloud-control",
   "version": "0.0.2",
   "description": "SoundCloud control browser extension",
   "repository": {
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ff": "web-ext run -s src/"
+    "ff": "web-ext run -s src/",
+    "build": "web-ext build -s src/ -a build/"
   },
   "keywords": [
     "soundcloud",
@@ -18,5 +19,6 @@
   "license": "MIT",
   "devDependencies": {
     "web-ext": "^2.2.2"
-  }
+  },
+  "private": true
 }

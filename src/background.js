@@ -1,11 +1,12 @@
-'use strict'
+'use strict';
 
 /* eslint-env browser, webextensions */
 
 const soundCloudUrl = 'https://soundcloud.com/*'
-const togglePlaybackCommand = 'toggle-playback'
-const previousSongCommand = 'previous-song'
-const nextSongCommand = 'next-song'
+const likeCurrentCommand = 'like-song';
+const nextSongCommand = 'next-song';
+const previousSongCommand = 'previous-song';
+const togglePlaybackCommand = 'toggle-playback';
 
 async function openSoundCloud() {
   await browser.tabs.create({
@@ -17,27 +18,49 @@ async function openSoundCloud() {
 function scriptFor(command) {
   switch (command) {
     case togglePlaybackCommand:
-      return scriptThatClicksOn('play');
+      return playerControl('play');
     case previousSongCommand:
-      return scriptThatClicksOn('prev');
+      return playerControl('prev');
     case nextSongCommand:
-      return scriptThatClicksOn('next');
+      return playerControl('next');
+    case likeCurrentCommand:
+      return likeCurrentSong();
   }
 }
 
-function scriptThatClicksOn(actionName) {
-  // console.log(`Got action: ${actionName}`);
+function createScript(func, actionName = '') {
+  let script = func.toString();
 
-  const script = function() {
+  if (actionName !== '') {
+    script = script.replace('%a', actionName);
+  }
+
+  return `(${script})()`;
+}
+
+function likeCurrentSong() {
+  const func = () => {
+    const button = document.querySelector('.playControls .sc-button-like:not(.sc-button-selected)');
+
+    if (button) {
+      button.click();
+    }
+  }
+
+  return createScript(func);
+}
+
+function playerControl(actionName) {
+  const func = () => {
     const button = document.querySelector(`.playControls .playControls__%a`);
     button.click();
   }
 
-  return '(' + script.toString().replace('%a', actionName) + ')()'
+  console.log(actionName, func)
+  return createScript(func, actionName);
 }
 
 async function executeCommand (command) {
-  console.log('[SoundCloud control] executing command: ', command)
   const scTabs = await browser.tabs.query({ url: soundCloudUrl });
 
   if (scTabs.length === 0) {
@@ -46,7 +69,6 @@ async function executeCommand (command) {
   }
 
   for (let tab of scTabs) {
-    // console.log('tab', tab)
     browser.tabs.executeScript(tab.id, {
       runAt: 'document_start',
       code: scriptFor(command)
@@ -54,10 +76,10 @@ async function executeCommand (command) {
   }
 }
 
-// // regular click on browser action toggles playback
-browser.browserAction.onClicked.addListener(() => executeCommand(togglePlaybackCommand))
+// Click on browser action toggles playback
+browser.browserAction.onClicked.addListener(() => executeCommand(togglePlaybackCommand));
 
-// context-click on browser action displays more options
+// Context-click on browser action displays more options
 browser.contextMenus.create({
   id: 'toggle-playback-menu-item',
   title: 'Toggle Playback',
@@ -77,4 +99,11 @@ browser.contextMenus.create({
   title: 'Next Song',
   contexts: ['browser_action'],
   onclick: () => executeCommand(nextSongCommand)
+});
+
+browser.contextMenus.create({
+  id: 'like-song-menu-item',
+  title: 'Like Current Song',
+  contexts: ['browser_action'],
+  onclick: () => executeCommand(likeCurrentCommand)
 });
