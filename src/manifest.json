@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SoundCloud Control",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Control SoundCloud player controls without switching tabs",
   "homepage_url": "https://github.com/johannesfischer/soundcloud-control/",
   "author": "Johannes Fischer",
@@ -23,17 +23,6 @@
     "browser_style": true,
     "default_icon": {
       "128": "soundcloud_dark_128.png"
-    }
-  },
-  "commands": {
-    "toggle-playback": {
-      "description": "Toggle Playback"
-    },
-    "previous-song": {
-      "description": "Previous Song"
-    },
-    "next-song": {
-      "description": "Next Song"
     }
   }
 }

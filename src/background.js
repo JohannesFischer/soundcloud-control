@@ -7,6 +7,7 @@ const likeCurrentCommand = 'like-song';
 const nextSongCommand = 'next-song';
 const previousSongCommand = 'previous-song';
 const togglePlaybackCommand = 'toggle-playback';
+const unlikeCurrentCommand = 'unlike-song';
 
 async function openSoundCloud() {
   await browser.tabs.create({
@@ -24,7 +25,9 @@ function scriptFor(command) {
     case nextSongCommand:
       return playerControl('next');
     case likeCurrentCommand:
-      return likeCurrentSong();
+      return updateLikeStatus('like');
+    case unlikeCurrentCommand:
+      return updateLikeStatus('unlike');
   }
 }
 
@@ -38,8 +41,8 @@ function createScript(func, actionName = '') {
   return `(${script})()`;
 }
 
-function likeCurrentSong() {
-  const func = () => {
+function updateLikeStatus(state) {
+  const likeFunc = () => {
     const button = document.querySelector('.playControls__soundBadge .sc-button-like:not(.sc-button-selected)');
 
     if (button) {
@@ -47,7 +50,15 @@ function likeCurrentSong() {
     }
   }
 
-  return createScript(func);
+  const unlikeFunc = () => {
+    const button = document.querySelector('.playControls__soundBadge .sc-button-like.sc-button-selected');
+
+    if (button) {
+      button.click();
+    }
+  }
+
+  return createScript(state === 'like' ? likeFunc : unlikeFunc);
 }
 
 function playerControl(actionName) {
@@ -102,8 +113,15 @@ browser.contextMenus.create({
 });
 
 browser.contextMenus.create({
-  id: 'like-song-menu-item',
-  title: 'Like Current Song',
+    id: 'like-song-menu-item',
+    title: 'Like Current Song',
+    contexts: ['browser_action'],
+    onclick: () => executeCommand(likeCurrentCommand)
+});
+
+browser.contextMenus.create({
+  id: 'unlike-song-menu-item',
+  title: 'Unlike Current Song',
   contexts: ['browser_action'],
-  onclick: () => executeCommand(likeCurrentCommand)
+  onclick: () => executeCommand(unlikeCurrentCommand)
 });
