@@ -9,4 +9,4 @@ __Features:__
   * Toggle payback
   * Rewind song / previous Song
   * Next song
-  * Like song currently playing
+  * Like / Unlike song currently playing
