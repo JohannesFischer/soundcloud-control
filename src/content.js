@@ -1,28 +1,27 @@
+const playControls = getPlayControls();
+
 browser.runtime.onMessage.addListener(function (msg, sender, response) {
   const { from, subject } = msg;
 
   console.log(from, subject);
 
-  if (from === 'popup' && subject === 'DOMInfo') {
+  if (from === 'popup' && subject === 'song-info') {
     response(songInfo());
   }
 
   if (from === 'popup' && subject === 'toggle-playback') {
-    const playControls = document.querySelector('.playControls');
     const playBtn = playControls.querySelector('.playControls__play');
     playBtn.click();
-    response(playBtn.classList.contains('playing'));
+    response(playerState());
   }
 
   if (from === 'popup' && subject === 'previous-song') {
-    const playControls = document.querySelector('.playControls');
     const prevBtn = playControls.querySelector('.playControls__prev');
     prevBtn.click();
     response(songInfo());
   }
 
   if (from === 'popup' && subject === 'next-song') {
-    const playControls = document.querySelector('.playControls');
     const nextBtn = playControls.querySelector('.playControls__next');
     nextBtn.click();
     response(songInfo());
@@ -34,6 +33,16 @@ browser.runtime.onMessage.addListener(function (msg, sender, response) {
     response(songInfo());
   }
 });
+
+function getPlayControls() {
+  return document.querySelector('.playControls');
+}
+
+function playerState() {
+  const playing = playControls.querySelector('.playControls__play').classList.contains('playing');
+
+  return { playing };
+}
 
 function songInfo() {
   const soundBadge = document.querySelector('.playControls__soundBadge');

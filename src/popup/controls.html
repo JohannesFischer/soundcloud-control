@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>SoundCloud Control Popup</title>
 </head>
 <body>
   <link rel="stylesheet" href="popup.css">
 
-  <img alt="">
+  <div class="image">
+    <div class="coverArt"></div>
+  </div>
 
-  <p id="artist"></p>
-  <p id="title"></p>
+  <div class="songinfo">
+    <div id="artist" class="light"></div>
+    <div id="title"></div>
+  </div>
 
-  <p>
-    <span id="previous">&lt;&lt;</span>
-    <span id="play">play / pause</span>
-    <span id="next">&gt;&gt;</span>
-  </p>
-
-  <p class="like">♥</p>
+  <div class="controls">
+    <div class="control control-previous"></div>
+    <div class="control control-playback-toggle"></div>
+    <div class="control control-next"></div>
+    <div class="control control-like"></div>
+  </div>
 
   <script src="popup.js"></script>
-
 </body>
 </html>

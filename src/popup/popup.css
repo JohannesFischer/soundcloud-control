@@ -1,22 +1,82 @@
 body {
+  background: #fff;
+  color: #333;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
   width: 250px;
 }
 
-p {
-  font-family: monospace;
+.light {
+  color: #999;
+}
+
+.image,
+.coverArt {
+  height: 250px;
+  width: 250px;
+}
+
+.image {
+  background-image: linear-gradient(135deg,#e6846e,#8e8485);
+}
+
+.coverArt {
+  background-size: cover;
+  opacity: 0;
+  transition: opacity ease .5s;
+}
+
+.coverArt.loaded {
+  opacity: 1;
+}
+
+.songinfo {
+  padding: 10px;
+}
+
+.songinfo div {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-p span {
-  padding: 0 .5rem 0 0;
+.controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }
 
-p span:last-of-type {
-  padding: 0;
+.controls .control {
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
 }
 
-p.like.liked {
-  color: orange;
+.control-previous {
+  background-image: url(svg/previous.svg);
+}
+
+.control-playback-toggle {
+ background-image: url(svg/play.svg);
+}
+.control-playback-toggle.playing {
+  background-image: url(svg/pause.svg);
+}
+
+.control-next {
+  background-image: url(svg/next.svg);
+}
+
+.control-like {
+  background-image: url(svg/heart.svg);
+}
+
+.control-like.liked {
+  background-image: url(svg/heart-orange.svg);
 }
