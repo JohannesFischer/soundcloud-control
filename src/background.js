@@ -2,7 +2,7 @@
 
 /* eslint-env browser, webextensions */
 
-const soundCloudUrl = 'https://soundcloud.com/*'
+const soundCloudUrl = 'https://soundcloud.com/*';
 const likeCurrentCommand = 'like-song';
 const nextSongCommand = 'next-song';
 const previousSongCommand = 'previous-song';
@@ -88,7 +88,7 @@ async function executeCommand (command) {
 }
 
 // Click on browser action toggles playback
-browser.browserAction.onClicked.addListener(() => executeCommand(togglePlaybackCommand));
+// browser.browserAction.onClicked.addListener(() => executeCommand(togglePlaybackCommand));
 
 // Context-click on browser action displays more options
 browser.contextMenus.create({

@@ -23,6 +23,12 @@
     "browser_style": true,
     "default_icon": {
       "128": "soundcloud_dark_128.png"
-    }
-  }
+    },
+    "default_popup": "popup/controls.html"
+  },
+  "content_scripts": [{
+    "matches": ["*://*.soundcloud.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_end"
+  }]
 }

@@ -1,0 +1,22 @@
+body {
+  width: 250px;
+}
+
+p {
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+p span {
+  padding: 0 .5rem 0 0;
+}
+
+p span:last-of-type {
+  padding: 0;
+}
+
+p.like.liked {
+  color: orange;
+}
