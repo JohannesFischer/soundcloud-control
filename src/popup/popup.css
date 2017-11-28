@@ -1,0 +1,91 @@
+body {
+  background: #fff;
+  color: #333;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  width: 250px;
+}
+
+.light {
+  color: #999;
+}
+
+.image,
+.cover-art {
+  height: 250px;
+  width: 250px;
+}
+
+.image {
+  background-image: linear-gradient(135deg,#e6846e,#8e8485);
+}
+
+.cover-art {
+  background-size: cover;
+  opacity: 0;
+  transition: opacity ease .5s;
+}
+
+.cover-art.loaded {
+  opacity: 1;
+}
+
+.content {
+  background: #f2f2f2;
+}
+
+.songinfo {
+  padding: 10px 10px 0;
+}
+
+.songinfo div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.songinfo div:not(:last-of-type) {
+  margin: 0 0 10px;
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.controls .control {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+
+.control-previous {
+  background-image: url(svg/previous.svg);
+}
+
+.control-playback-toggle {
+ background-image: url(svg/play.svg);
+}
+.control-playback-toggle.playing {
+  background-image: url(svg/pause.svg);
+}
+
+.control-next {
+  background-image: url(svg/next.svg);
+}
+
+.control-like {
+  background-image: url(svg/heart.svg);
+}
+
+.control-like.liked {
+  background-image: url(svg/heart-orange.svg);
+}

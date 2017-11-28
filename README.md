@@ -2,11 +2,18 @@
 
 A browser extension that lets you control the SoundCloud player controls without switching tabs.
 
+![Screenshot](screenshot.png)
+
 __Features:__
-* Open SoundCloud in a new pinned tab if not open yet
-* Toggle Playback with one click one the icon
-* Options available via context menu
-  * Toggle payback
-  * Rewind song / previous Song
-  * Next song
-  * Like / Unlike song currently playing
+* Open SoundCloud in a new tab if not open yet
+* Easily toggle playback or skip songs from the popup
+* Like and unlike the song you are currently listening to
+
+### Development
+
+```
+npm install
+npm run ff
+```
+
+All Icons used are taken from [iconmonstr](https://iconmonstr.com/).

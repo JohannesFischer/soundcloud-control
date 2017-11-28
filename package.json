@@ -1,6 +1,6 @@
 {
   "name": "soundcloud-control",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "SoundCloud control browser extension",
   "repository": {
     "type": "git",
@@ -9,8 +9,7 @@
   "scripts": {
     "ff": "web-ext run -s src/",
     "lint:ext": "web-ext lint -s src/",
-    "build:ext": "web-ext build -s src/ -a build/",
-    "copy:polyfill": "shx cp ./node_modules/webextension-polyfill/dist/browser-polyfill.min.js ./src/browser-polyfill.js"
+    "build:ext": "web-ext build -s src/ -a build/"
   },
   "keywords": [
     "soundcloud",
@@ -20,10 +19,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "shx": "^0.2.2",
     "web-ext": "^2.2.2"
   },
-  "dependencies": {
-    "webextension-polyfill": "^0.2.1"
-  }
+  "dependencies": {}
 }
