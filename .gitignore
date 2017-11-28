@@ -2,4 +2,3 @@ node_modules
 build
 package-lock.json
 .web-extension-id
-browser-polyfill.js

@@ -2,9 +2,8 @@ body {
   background: #fff;
   color: #333;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 1.2;
   width: 250px;
 }
 
@@ -13,7 +12,7 @@ body {
 }
 
 .image,
-.coverArt {
+.cover-art {
   height: 250px;
   width: 250px;
 }
@@ -22,24 +21,32 @@ body {
   background-image: linear-gradient(135deg,#e6846e,#8e8485);
 }
 
-.coverArt {
+.cover-art {
   background-size: cover;
   opacity: 0;
   transition: opacity ease .5s;
 }
 
-.coverArt.loaded {
+.cover-art.loaded {
   opacity: 1;
 }
 
+.content {
+  background: #f2f2f2;
+}
+
 .songinfo {
-  padding: 10px;
+  padding: 10px 10px 0;
 }
 
 .songinfo div {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.songinfo div:not(:last-of-type) {
+  margin: 0 0 5px;
 }
 
 .controls {
@@ -50,12 +57,13 @@ body {
 }
 
 .controls .control {
+  background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 16px;
   cursor: pointer;
   display: inline-block;
-  height: 18px;
-  width: 18px;
+  height: 24px;
+  width: 24px;
 }
 
 .control-previous {

@@ -7,25 +7,35 @@ async function openSoundCloud() {
   });
 }
 
-function updateSongInfo(songInfo) {
-  console.log('received from content script: ', songInfo);
+function updatePopup(state) {
+  const { artist, imageUrl, likeState, playing, songTitle } = state;
 
-  const coverArtEl = document.querySelector('.image .coverArt');
-  const imageSrc = songInfo.imageUrl.replace(/(\d+x\d+)/, `${imageSize}x${imageSize}`);
+  const coverArtEl = document.querySelector('.image .cover-art');
+  const imageSrc = imageUrl.replace(/(\d+x\d+)/, `${imageSize}x${imageSize}`);
   coverArtEl.classList.remove('loaded');
 
   loadCoverArt(imageSrc).then(() => {
-    console.log('img loaded');
     coverArtEl.classList.add('loaded');
     coverArtEl.style.backgroundImage = `url("${imageSrc}")`;
   });
 
-  document.querySelector('#artist').innerText = songInfo.artist;
-  document.querySelector('#title').innerText = songInfo.title;
+  document.querySelector('.artist').innerText = artist;
+  const songTitleEl = document.querySelector('.song-title');
+  songTitleEl.innerText = songTitle;
+  songTitleEl.title = songTitle;
+
+  const playControl = document.querySelector('.control-playback-toggle');
+
+  if (playing) {
+    playControl.classList.add('playing');
+  } else {
+    playControl.classList.remove('playing');
+  }
 
   const likeBtn = document.querySelector('.control-like');
-  console.log(likeBtn);
-  if (songInfo.likeState === true) {
+  likeBtn.title = likeState ? 'Unlike' : 'Like';
+
+  if (likeState === true) {
     likeBtn.classList.add('liked');
   } else {
     likeBtn.classList.remove('liked');
@@ -41,18 +51,7 @@ function loadCoverArt(src){
   });
 }
 
-function playerState(state) {
-  const { playing } = state;
-  const playControl = document.querySelector('.control-playback-toggle');
-
-  if (playing) {
-    playControl.classList.add('playing');
-  } else {
-    playControl.classList.remove('playing');
-  }
-}
-
-async function executeCommand(msg, callback) {
+async function executeCommand(subject, callback) {
   const scTabs = await browser.tabs.query({ url: soundCloudUrl });
 
   if (scTabs.length === 0) {
@@ -61,27 +60,29 @@ async function executeCommand(msg, callback) {
     return;
   }
 
-  browser.tabs.sendMessage(scTabs[0].id, msg, callback);
+  const payLoad = Object.assign({ from: 'popup' }, subject);
+
+  browser.tabs.sendMessage(scTabs[0].id, payLoad, callback);
 }
 
 // Event Listeners
 
-window.addEventListener('DOMContentLoaded', function () {
-  executeCommand({ from: 'popup', subject: 'song-info' }, updateSongInfo);
+window.addEventListener('DOMContentLoaded', () => {
+  executeCommand({ subject: 'song-info' }, updatePopup);
 });
 
 document.querySelector('.control-playback-toggle').addEventListener('click', () => {
-  executeCommand({ from: 'popup', subject: 'toggle-playback' }, playerState);
+  executeCommand({ subject: 'toggle-playback' }, updatePopup);
 });
 
 document.querySelector('.control-previous').addEventListener('click', () => {
-  executeCommand({ from: 'popup', subject: 'previous-song' }, updateSongInfo);
+  executeCommand({ subject: 'previous-song' }, updatePopup);
 });
 
 document.querySelector('.control-next').addEventListener('click', () => {
-  executeCommand({ from: 'popup', subject: 'next-song' }, updateSongInfo);
+  executeCommand({ subject: 'next-song' }, updatePopup);
 });
 
 document.querySelector('.control-like').addEventListener('click', () => {
-  executeCommand({ from: 'popup', subject: 'toggle-like' }, updateSongInfo);
+  executeCommand({ subject: 'toggle-like' }, updatePopup);
 });
