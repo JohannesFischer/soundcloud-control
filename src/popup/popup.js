@@ -11,12 +11,12 @@ function updatePopup(state) {
   const { artist, imageUrl, likeState, playing, songTitle } = state;
 
   const coverArtEl = document.querySelector('.image .cover-art');
-  const imageSrc = imageUrl.replace(/(\d+x\d+)/, `${imageSize}x${imageSize}`);
+  const imageSrc = imageUrl.replace(/(\d+x\d+)\.jpg/, `${imageSize}x${imageSize}.jpg`);
   coverArtEl.classList.remove('loaded');
 
   loadCoverArt(imageSrc).then(() => {
     coverArtEl.classList.add('loaded');
-    coverArtEl.style.backgroundImage = `url("${imageSrc}")`;
+    coverArtEl.style.backgroundImage = `url(${imageSrc})`;
   });
 
   document.querySelector('.artist').innerText = artist;
