@@ -19,9 +19,32 @@
     },
     "default_popup": "popup/popup.html"
   },
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [{
     "matches": ["*://*.soundcloud.com/*"],
     "js": ["content.js"],
     "run_at": "document_end"
-  }]
+  }],
+  "commands": {
+    "toggle-playback": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+U"
+      },
+      "description": "Toggle SoundCloud playback"
+    },
+    "previous-song": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      },
+      "description": "Rewind song playing on SoundCloud"
+    },
+    "next-song": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+I"
+      },
+      "description": "Skip to next song on SoundCloud"
+    }
+  }
 }

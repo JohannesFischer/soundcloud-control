@@ -5,34 +5,34 @@ browser.runtime.onMessage.addListener(function (msg, sender, response) {
 
   // console.log(from, subject);
 
-  if (from !== 'popup') return;
-
-  if (subject === 'song-info') {
-    response(getState());
-  }
+  if (!['command', 'popup'].includes(from)) return;
 
   if (subject === 'toggle-playback') {
     const playBtn = playControls.querySelector('.playControls__play');
     playBtn.click();
-    response(getState());
+    // response(getState());
   }
 
   if (subject === 'previous-song') {
     const prevBtn = playControls.querySelector('.playControls__prev');
     prevBtn.click();
-    response(getState());
+    // response(getState());
   }
 
   if (subject === 'next-song') {
     const nextBtn = playControls.querySelector('.playControls__next');
     nextBtn.click();
-    response(getState());
+    // response(getState());
   }
 
   if (subject === 'toggle-like') {
     const soundBadge = getSoundBadge();
     const likeBtn = soundBadge.querySelector('.sc-button-like');
     likeBtn.click();
+    // response(getState());
+  }
+
+  if (from === 'popup') {
     response(getState());
   }
 });
