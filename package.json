@@ -9,7 +9,7 @@
   "scripts": {
     "ff": "web-ext run -s src/ --bc",
     "lint:ext": "web-ext lint -s src/",
-    "build:ext": "web-ext build -s src/ -a build/",
+    "build:ext": "web-ext build -s src/ -a build/ -i background.js popup/popup.js",
     "build:js": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "keywords": [
