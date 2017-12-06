@@ -1,23 +1,7 @@
-const soundCloudUrl = 'https://soundcloud.com/*';
-
-async function executeCommand(subject) {
-  const scTabs = await browser.tabs.query({ url: soundCloudUrl });
-
-  if (scTabs.length === 0) return false;
-
-  const payLoad = Object.assign({ from: 'command' }, subject);
-
-  browser.tabs.sendMessage(scTabs[0].id, payLoad);
-}
+import { commands, executeCommand, soundCloudUrl } from 'src/lib';
 
 browser.commands.onCommand.addListener(function(command) {
-  const commands = [
-    'next-song',
-    'previous-song',
-    'toggle-playback'
-  ];
-
-  if (commands.includes(command)) {
-    executeCommand({ subject: command });
+  if (Object.values(commands).includes(command)) {
+    executeCommand({ from: 'command', subject: command });
   }
 });

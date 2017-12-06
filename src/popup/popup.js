@@ -1,13 +1,10 @@
-const imageSize = 250;
-const soundCloudUrl = 'https://soundcloud.com/*';
+import { commands, executeCommand, soundCloudUrl } from 'src/lib';
 
-async function openSoundCloud() {
-  await browser.tabs.create({
-    url: soundCloudUrl.replace('*', '')
-  });
-}
+const imageSize = 250;
 
 function updatePopup(state) {
+  if (!state) return window.close();
+
   const { artist, imageUrl, likeState, playing, songTitle } = state;
 
   const coverArtEl = document.querySelector('.image .cover-art');
@@ -51,38 +48,24 @@ function loadCoverArt(src){
   });
 }
 
-async function executeCommand(subject, callback) {
-  const scTabs = await browser.tabs.query({ url: soundCloudUrl });
-
-  if (scTabs.length === 0) {
-    openSoundCloud();
-    window.close();
-    return;
-  }
-
-  const payLoad = Object.assign({ from: 'popup' }, subject);
-
-  browser.tabs.sendMessage(scTabs[0].id, payLoad, callback);
-}
-
 // Event Listeners
 
 window.addEventListener('DOMContentLoaded', () => {
-  executeCommand({ subject: 'song-info' }, updatePopup);
+  executeCommand({ from: 'popup', subject: commands.songInfo }, updatePopup);
 });
 
 document.querySelector('.control-playback-toggle').addEventListener('click', () => {
-  executeCommand({ subject: 'toggle-playback' }, updatePopup);
+  executeCommand({ from: 'popup', subject: commands.togglePlayback }, updatePopup);
 });
 
 document.querySelector('.control-previous').addEventListener('click', () => {
-  executeCommand({ subject: 'previous-song' }, updatePopup);
+  executeCommand({ from: 'popup', subject: commands.previousSong }, updatePopup);
 });
 
 document.querySelector('.control-next').addEventListener('click', () => {
-  executeCommand({ subject: 'next-song' }, updatePopup);
+  executeCommand({ from: 'popup', subject: commands.nextSong }, updatePopup);
 });
 
 document.querySelector('.control-like').addEventListener('click', () => {
-  executeCommand({ subject: 'toggle-like' }, updatePopup);
+  executeCommand({ from: 'popup', subject: commands.toggleLike }, updatePopup);
 });

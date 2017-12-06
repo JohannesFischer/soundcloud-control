@@ -13,6 +13,7 @@ __Features:__
 
 ```
 npm install
+npm run build:js
 npm run ff
 ```
 
