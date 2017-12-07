@@ -1,7 +1,4 @@
 const path = require('path');
-// const webpack = require('webpack');
-// require('babel-core/register');
-
 const srcFolder = path.join(__dirname, 'src')
 
 module.exports = {
