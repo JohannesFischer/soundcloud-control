@@ -30,19 +30,19 @@
   "commands": {
     "toggle-playback": {
       "suggested_key": {
-        "default": "Ctrl+Shift+U"
+        "default": "Ctrl+Shift+6"
       },
       "description": "Toggle SoundCloud playback"
     },
     "previous-song": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Y"
+        "default": "Ctrl+Shift+5"
       },
       "description": "Rewind song playing on SoundCloud"
     },
     "next-song": {
       "suggested_key": {
-        "default": "Ctrl+Shift+I"
+        "default": "Ctrl+Shift+7"
       },
       "description": "Skip to next song on SoundCloud"
     }
