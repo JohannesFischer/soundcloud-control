@@ -1,3 +1,8 @@
+:root {
+  --control-size: 24px;
+  --cover-art-size: 250px;
+}
+
 body {
   background: #fff;
   color: #333;
@@ -5,7 +10,7 @@ body {
   font-size: 13px;
   font-weight: 400;
   line-height: 1.2;
-  width: 250px;
+  width: var(--cover-art-size);;
 }
 
 .light {
@@ -14,8 +19,8 @@ body {
 
 .image,
 .cover-art {
-  height: 250px;
-  width: 250px;
+  height: var(--cover-art-size);
+  width: var(--cover-art-size);
 }
 
 .image {
@@ -63,8 +68,8 @@ body {
   background-size: 16px;
   cursor: pointer;
   display: inline-block;
-  height: 24px;
-  width: 24px;
+  height: var(--control-size);
+  width: var(--control-size);
 }
 
 .control-previous {

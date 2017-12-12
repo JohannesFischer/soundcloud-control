@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SoundCloud Control",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Control SoundCloud player controls without switching tabs",
   "homepage_url": "https://github.com/johannesfischer/soundcloud-control/",
   "author": "Johannes Fischer",
@@ -19,9 +19,32 @@
     },
     "default_popup": "popup/popup.html"
   },
+  "background": {
+    "scripts": ["background.bundle.js"]
+  },
   "content_scripts": [{
     "matches": ["*://*.soundcloud.com/*"],
     "js": ["content.js"],
     "run_at": "document_end"
-  }]
+  }],
+  "commands": {
+    "toggle-playback": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+6"
+      },
+      "description": "Toggle SoundCloud playback"
+    },
+    "previous-song": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+5"
+      },
+      "description": "Rewind song playing on SoundCloud"
+    },
+    "next-song": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+7"
+      },
+      "description": "Skip to next song on SoundCloud"
+    }
+  }
 }
