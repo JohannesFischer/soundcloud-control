@@ -8,7 +8,9 @@ const commands = {
 };
 
 async function executeCommand(message, callback = null) {
-  const scTabs = await browser.tabs.query({ url: soundCloudUrl });
+  const scTabs = await browser.tabs.query({
+    url: soundCloudUrl
+  });
 
   if (scTabs.length === 0) {
     openSoundCloud();
@@ -18,6 +20,17 @@ async function executeCommand(message, callback = null) {
     }
 
     return;
+  }
+
+  if (scTabs.length > 1) {
+    const audibleTabs = await browser.tabs.query({
+      audible: true,
+      url: soundCloudUrl
+    });
+
+    if (audibleTabs.length > 0) {
+      scTabs[0] = audibleTabs[0];
+    }
   }
 
   browser.tabs.sendMessage(scTabs[0].id, message, callback);
