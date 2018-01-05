@@ -1,29 +1,39 @@
-const playControls = getPlayControls();
+import { commands } from 'src/lib';
 
-browser.runtime.onMessage.addListener(function (msg, sender, response) {
-  const { from, subject } = msg;
+browser.runtime.onMessage.addListener(function(msg, sender, response) {
+  const { from, subject, goTo } = msg;
 
   if (!['command', 'popup'].includes(from)) return;
 
-  if (subject === 'toggle-playback') {
-    const playBtn = playControls.querySelector('.playControls__play');
-    playBtn.click();
+  const playControls = getPlayControls();
+
+  if (subject === commands.togglePlayback) {
+    playControls.querySelector('.playControls__play').click();
   }
 
-  if (subject === 'previous-song') {
-    const prevBtn = playControls.querySelector('.playControls__prev');
-    prevBtn.click();
+  if (subject === commands.previousSong) {
+    playControls.querySelector('.playControls__prev').click();
   }
 
-  if (subject === 'next-song') {
-    const nextBtn = playControls.querySelector('.playControls__next');
-    nextBtn.click();
+  if (subject === commands.nextSong) {
+    playControls.querySelector('.playControls__next').click();
   }
 
-  if (subject === 'toggle-like') {
+  if (subject === commands.toggleLike) {
     const soundBadge = getSoundBadge();
-    const likeBtn = soundBadge.querySelector('.sc-button-like');
-    likeBtn.click();
+    soundBadge.querySelector('.sc-button-like').click();
+  }
+
+  if (subject === commands.activateTab) {
+    const soundBadge = getSoundBadge();
+
+    if (goTo === 'artist') {
+      soundBadge.querySelector('.playbackSoundBadge__titleContextContainer a').click();
+    }
+
+    if (goTo === 'title') {
+      soundBadge.querySelector('.playbackSoundBadge__titleLink').click();
+    }
   }
 
   if (from === 'popup') {
@@ -40,14 +50,12 @@ function getSoundBadge() {
 }
 
 function getState() {
+  const playControls = getPlayControls();
   const soundBadge = getSoundBadge();
 
-  const artistLink = soundBadge.querySelector('.playbackSoundBadge__titleContextContainer a');
-  const artist = artistLink ? artistLink.title : '';
-  const artistUrl = artistLink ? artistLink.href : '';
+  const artist = soundBadge.querySelector('.playbackSoundBadge__titleContextContainer a').title;
 
-  const titleLink = soundBadge.querySelector('.playbackSoundBadge__titleLink');
-  const songTitle = titleLink.title;
+  const songTitle = soundBadge.querySelector('.playbackSoundBadge__titleLink').title;
 
   const image = soundBadge.querySelector('.image span');
   const imageUrl = image.style.backgroundImage.match(/url\(\"(.*)\"\)/)[1];
@@ -59,7 +67,6 @@ function getState() {
 
   return {
     artist,
-    artistUrl,
     imageUrl,
     likeState,
     playing,

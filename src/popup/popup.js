@@ -1,6 +1,6 @@
 import { commands, executeCommand, soundCloudUrl } from 'src/lib';
 
-const imageSize = 250;
+const imageSize = 500;
 
 function updatePopup(state) {
   if (!state) return window.close();
@@ -68,4 +68,12 @@ document.querySelector('.control-next').addEventListener('click', () => {
 
 document.querySelector('.control-like').addEventListener('click', () => {
   executeCommand({ from: 'popup', subject: commands.toggleLike }, updatePopup);
+});
+
+document.querySelector('.song-info .artist').addEventListener('click', () => {
+  executeCommand({ from: 'popup', subject: commands.activateTab, goTo: 'artist' });
+});
+
+document.querySelector('.song-info .song-title').addEventListener('click', () => {
+  executeCommand({ from: 'popup', subject: commands.activateTab, goTo: 'title' });
 });
