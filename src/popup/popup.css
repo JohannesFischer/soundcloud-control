@@ -10,7 +10,7 @@ body {
   font-size: 13px;
   font-weight: 400;
   line-height: 1.2;
-  width: var(--cover-art-size);;
+  width: var(--cover-art-size);
 }
 
 .light {
@@ -41,17 +41,22 @@ body {
   background: #f2f2f2;
 }
 
-.songinfo {
+.song-info {
   padding: 10px 10px 0;
 }
 
-.songinfo div {
+.song-info div {
+  cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.songinfo div:not(:last-of-type) {
+.song-info div:hover {
+  color: #000;
+}
+
+.song-info div:not(:last-of-type) {
   margin: 0 0 5px;
 }
 

@@ -10,7 +10,8 @@
     "ff": "web-ext run -s src/ --bc",
     "lint:ext": "web-ext lint -s src/ -i background.js lib.js popup/popup.js",
     "build:ext": "web-ext build -s src/ -a build/ -i background.js lib.js popup/popup.js",
-    "build:js": "./node_modules/.bin/webpack --config webpack.config.js"
+    "build:js": "webpack --config webpack.config.js",
+    "build:js:watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
   },
   "keywords": [
     "soundcloud",

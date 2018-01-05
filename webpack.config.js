@@ -4,8 +4,9 @@ const srcFolder = path.join(__dirname, 'src')
 module.exports = {
   context: srcFolder,
   entry: {
-    background: ['./background.js'],
-    'popup/popup': ['./popup/popup.js']
+    background: './background.js',
+    content: './content.js',
+    'popup/popup': './popup/popup.js'
   },
   output: {
     filename: '[name].bundle.js',
