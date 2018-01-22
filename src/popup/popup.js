@@ -1,10 +1,9 @@
 import { commands, executeCommand, soundCloudUrl } from 'src/lib';
 
-const imageSize = 500;
-
 function updatePopup(state) {
   if (!state) return window.close();
 
+  const imageSize = 500;
   const { artist, imageUrl, likeState, playing, songTitle } = state;
 
   const coverArtEl = document.querySelector('.image .cover-art');
@@ -22,21 +21,11 @@ function updatePopup(state) {
   songTitleEl.title = songTitle;
 
   const playControl = document.querySelector('.control-playback-toggle');
-
-  if (playing) {
-    playControl.classList.add('playing');
-  } else {
-    playControl.classList.remove('playing');
-  }
+  playControl.classList[playing ? 'add' : 'remove']('playing');
 
   const likeBtn = document.querySelector('.control-like');
   likeBtn.title = likeState ? 'Unlike' : 'Like';
-
-  if (likeState === true) {
-    likeBtn.classList.add('liked');
-  } else {
-    likeBtn.classList.remove('liked');
-  }
+  likeBtn.classList[likeState ? 'add' : 'remove']('liked');
 }
 
 function loadCoverArt(src){

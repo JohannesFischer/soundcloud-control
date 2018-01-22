@@ -6,6 +6,7 @@ browser.runtime.onMessage.addListener(function(msg, sender, response) {
   if (!['command', 'popup'].includes(from)) return;
 
   const playControls = getPlayControls();
+  const soundBadge = getSoundBadge();
 
   if (subject === commands.togglePlayback) {
     playControls.querySelector('.playControls__play').click();
@@ -20,7 +21,6 @@ browser.runtime.onMessage.addListener(function(msg, sender, response) {
   }
 
   if (subject === commands.toggleLike) {
-    const soundBadge = getSoundBadge();
     soundBadge.querySelector('.sc-button-like').click();
   }
 
@@ -71,5 +71,5 @@ function getState() {
     likeState,
     playing,
     songTitle
-  }
+  };
 }

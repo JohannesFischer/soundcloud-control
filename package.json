@@ -1,15 +1,15 @@
 {
   "name": "soundcloud-control",
-  "version": "0.3.0",
-  "description": "SoundCloud control browser extension",
+  "version": "0.4.0",
+  "description": "SoundCloud Control browser extension",
   "repository": {
     "type": "git",
     "url": "https://github.com/JohannesFischer/soundcloud-control.git"
   },
   "scripts": {
-    "ff": "web-ext run -s src/ --bc",
-    "lint:ext": "web-ext lint -s src/ -i background.js content.js lib.js popup/popup.js",
-    "build:ext": "web-ext build -s src/ -a build/ -i background.js content.js lib.js popup/popup.js",
+    "ff": "web-ext run --bc",
+    "lint:ext": "web-ext lint",
+    "build:ext": "web-ext build",
     "build:js": "webpack --config webpack.config.js",
     "build:js:watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
   },
@@ -23,7 +23,7 @@
   "devDependencies": {
     "babel-loader": "^7.1.2",
     "babel-preset-import-export": "^1.0.2",
-    "web-ext": "^2.2.2",
+    "web-ext": "^2.3.1",
     "webpack": "^3.10.0"
   },
   "dependencies": {}
