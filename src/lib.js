@@ -45,4 +45,4 @@ async function openSoundCloud() {
   })
 }
 
-export { commands, executeCommand, soundCloudUrl }
+export { commands, executeCommand }
