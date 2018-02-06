@@ -9,13 +9,15 @@
   "scripts": {
     "ff": "web-ext run --bc",
     "lint:ext": "web-ext lint",
+    "lint:js": "eslint ./src/",
     "build:ext": "web-ext build",
     "build:js": "webpack --config webpack.config.js",
     "build:js:watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
   },
   "keywords": [
     "soundcloud",
-    "extension"
+    "webextension",
+    "firefox"
   ],
   "author": "Johannes Fischer",
   "license": "MIT",
@@ -23,7 +25,13 @@
   "devDependencies": {
     "babel-loader": "^7.1.2",
     "babel-preset-import-export": "^1.0.2",
-    "web-ext": "^2.3.1",
+    "eslint": "^4.17.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "web-ext": "^2.4.0",
     "webpack": "^3.10.0"
   },
   "dependencies": {}
