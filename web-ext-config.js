@@ -7,4 +7,4 @@ module.exports = {
     'popup/popup.js'
   ],
   sourceDir: 'src/'
-};
+}

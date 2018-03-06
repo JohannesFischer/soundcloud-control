@@ -1,6 +1,6 @@
 {
   "name": "soundcloud-control",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "SoundCloud Control browser extension",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "lint:js": "eslint ./src/",
     "build:ext": "web-ext build",
     "build:js": "webpack --config webpack.config.js",
-    "build:js:watch": "./node_modules/.bin/webpack --config webpack.config.js --watch"
+    "build:js:watch": "webpack --config webpack.config.js --watch"
   },
   "keywords": [
     "soundcloud",
@@ -32,7 +32,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "web-ext": "^2.4.0",
-    "webpack": "^3.10.0"
+    "webpack": "^3.11.0"
   },
   "dependencies": {}
 }
