@@ -1,20 +1,19 @@
 :root {
   --control-size: 24px;
   --cover-art-size: 250px;
+  --font-color: #666;
+  --font-color-hover: #000;
+  --font-color-light: #999;
 }
 
 body {
   background: #fff;
-  color: #333;
+  color: var(--font-color);
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.2;
   width: var(--cover-art-size);
-}
-
-.light {
-  color: #999;
 }
 
 .image,
@@ -24,7 +23,7 @@ body {
 }
 
 .image {
-  background-image: linear-gradient(135deg,#e6846e,#8e8485);
+  background-image: linear-gradient(135deg #e6846e, #8e8485);
 }
 
 .cover-art {
@@ -45,6 +44,10 @@ body {
   padding: 10px 10px 0;
 }
 
+.song-info .light {
+  color: var(--font-color-light);
+}
+
 .song-info div {
   cursor: pointer;
   overflow: hidden;
@@ -53,7 +56,7 @@ body {
 }
 
 .song-info div:hover {
-  color: #000;
+  color: var(--font-color-hover);
 }
 
 .song-info div:not(:last-of-type) {
@@ -82,8 +85,9 @@ body {
 }
 
 .control-playback-toggle {
- background-image: url(svg/play.svg);
+  background-image: url(svg/play.svg);
 }
+
 .control-playback-toggle.playing {
   background-image: url(svg/pause.svg);
 }

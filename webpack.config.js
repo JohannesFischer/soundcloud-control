@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const srcFolder = path.join(__dirname, 'src')
 
 module.exports = {
@@ -26,4 +26,4 @@ module.exports = {
       src: srcFolder
     }
   }
-};
+}
