@@ -3,3 +3,4 @@ build
 package-lock.json
 .web-extension-id
 *.bundle.js
+.DS_Store

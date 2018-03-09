@@ -20,6 +20,7 @@ Rewind song playing on SoundCloud
 `Shift` + `Ctrl` + `6`
 
 Skip to next song on SoundCloud
+
 `Shift` + `Ctrl` + `7`
 
 ### Development
@@ -27,6 +28,8 @@ Skip to next song on SoundCloud
 ```
 npm install
 npm run build:js
+# or to watch changes
+npm run build:js:watch
 npm run ff
 ```
 
