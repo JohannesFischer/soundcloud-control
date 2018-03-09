@@ -1,20 +1,32 @@
 :root {
   --control-size: 24px;
   --cover-art-size: 250px;
-  --font-color: #666;
-  --font-color-hover: #000;
-  --font-color-light: #999;
+  --font-color: #fff;
+  --font-size: 14px;
+  --font-size-small: 11px;
+  --transition-duration: .4s;
+  --transition-duration-short: .25s;
 }
 
 body {
   background: #fff;
   color: var(--font-color);
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
-  font-size: 13px;
+  font-size: var(--font-size);
   font-weight: 400;
   line-height: 1.2;
+  margin: 0;
+  padding: 0;
   width: var(--cover-art-size);
 }
+
+.pop-up-container {
+  height: var(--cover-art-size);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Cover Image */
 
 .image,
 .cover-art {
@@ -23,51 +35,64 @@ body {
 }
 
 .image {
-  background-image: linear-gradient(135deg #e6846e, #8e8485);
+  background: linear-gradient(135deg, #e6846e, #8e8485);
 }
 
 .cover-art {
   background-size: cover;
   opacity: 0;
-  transition: opacity ease .5s;
+  transition: opacity var(--transition-duration);
 }
 
 .cover-art.loaded {
   opacity: 1;
 }
 
-.content {
-  background: #f2f2f2;
+/* Common */
+
+.song-info,
+.controls,
+.overlay {
+  position: absolute;
 }
+
+.song-info,
+.controls {
+  z-index: 2;
+}
+
+/* Song Info */
 
 .song-info {
-  padding: 10px 10px 0;
+  left: 15px;
+  top: 15px;
+  max-width: 75%;
 }
 
-.song-info .light {
-  color: var(--font-color-light);
-}
-
-.song-info div {
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.song-info div:hover {
-  color: var(--font-color-hover);
-}
-
-.song-info div:not(:last-of-type) {
+.song-info div:first-of-type {
+  font-size: var(--font-size-small);
   margin: 0 0 5px;
 }
 
+.song-info p {
+  background: rgba(0, 0, 0, .9);
+  color: var(--font-color);
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 3px 6px;
+}
+
+/* Controls */
+
 .controls {
   align-items: center;
+  bottom: -34px;
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 10px 0;
+  transition: bottom .5s ease;
+  width: 100%;
 }
 
 .controls .control {
@@ -75,7 +100,6 @@ body {
   background-repeat: no-repeat;
   background-size: 16px;
   cursor: pointer;
-  display: inline-block;
   height: var(--control-size);
   width: var(--control-size);
 }
@@ -102,4 +126,27 @@ body {
 
 .control-like.liked {
   background-image: url(svg/heart-orange.svg);
+}
+
+/* Overlay */
+
+.overlay {
+  background: linear-gradient(transparent 75%, rgba(0, 0, 0, .35));
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  transition: opacity var(--transition-duration-short);
+  width: 100%;
+  z-index: 1;
+}
+
+/* Hover State */
+
+.pop-up-container:hover .overlay {
+  opacity: 1;
+}
+
+.pop-up-container:hover .controls {
+  bottom: 0;
 }
