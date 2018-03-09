@@ -83,6 +83,10 @@ body {
   padding: 3px 6px;
 }
 
+.song-info p:empty {
+  padding: 0;
+}
+
 /* Controls */
 
 .controls {
