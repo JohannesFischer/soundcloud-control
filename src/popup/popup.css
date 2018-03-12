@@ -66,6 +66,9 @@ body {
 .song-info {
   left: 15px;
   top: 15px;
+}
+
+.song-info div {
   max-width: 75%;
 }
 
@@ -83,6 +86,10 @@ body {
   padding: 3px 6px;
 }
 
+.song-info p:empty {
+  padding: 0;
+}
+
 /* Controls */
 
 .controls {
@@ -90,8 +97,9 @@ body {
   bottom: -34px;
   display: flex;
   justify-content: space-around;
+  opacity: 0;
   padding: 10px 0;
-  transition: bottom .5s ease;
+  transition: bottom var(--transition-duration) ease-out, opacity var(--transition-duration-short) ease;
   width: 100%;
 }
 
@@ -149,4 +157,5 @@ body {
 
 .pop-up-container:hover .controls {
   bottom: 0;
+  opacity: 1;
 }
