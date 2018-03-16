@@ -8,18 +8,19 @@ module.exports = {
     content: './content.js',
     'popup/popup': './popup/popup.js'
   },
-  output: {
-    filename: '[name].bundle.js',
-    path: srcFolder
-  },
+  mode: process.env.NODE_ENV || 'production',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         use: ['babel-loader'],
         exclude: path.join(__dirname, 'node_modules')
       }
     ]
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: srcFolder
   },
   resolve: {
     alias: {
