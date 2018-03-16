@@ -14,7 +14,7 @@ body {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
   font-size: var(--font-size);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.4;
   margin: 0;
   padding: 0;
   width: var(--cover-art-size);
@@ -66,6 +66,7 @@ body {
 .song-info {
   left: 15px;
   top: 15px;
+  width: calc(100% - 30px);
 }
 
 .song-info div {
@@ -94,12 +95,13 @@ body {
 
 .controls {
   align-items: center;
-  bottom: -34px;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   opacity: 0;
-  padding: 10px 0;
-  transition: bottom var(--transition-duration) ease-out, opacity var(--transition-duration-short) ease;
+  padding: 0 0 10px;
+  transition: transform var(--transition-duration-short) ease-out, opacity var(--transition-duration-short) ease;
+  transform: translate(0, 100%);
   width: 100%;
 }
 
@@ -156,6 +158,6 @@ body {
 }
 
 .pop-up-container:hover .controls {
-  bottom: 0;
+  transform: translate(0, 0);
   opacity: 1;
 }
