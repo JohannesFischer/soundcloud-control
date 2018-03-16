@@ -1,6 +1,6 @@
 {
   "name": "soundcloud-control",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "SoundCloud Control browser extension",
   "repository": {
     "type": "git",
