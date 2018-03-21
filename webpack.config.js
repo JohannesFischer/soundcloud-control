@@ -8,7 +8,7 @@ module.exports = {
     content: './content.js',
     'popup/popup': './popup/popup.js'
   },
-  mode: process.env.NODE_ENV || 'production',
+  mode: 'production',
   module: {
     rules: [
       {

@@ -12,7 +12,7 @@
     "lint:js": "eslint ./src/",
     "build:ext": "web-ext build",
     "build:js": "webpack --config webpack.config.js",
-    "build:js:watch": "NODE_ENV=development webpack --config webpack.config.js --watch",
+    "build:js:watch": "webpack --config webpack.config.js --watch",
     "test": "npm run lint:ext && npm run lint:js"
   },
   "keywords": [
