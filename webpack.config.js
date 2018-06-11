@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     background: './background.js',
     content: './content.js',
+    'options/options': './options/options.js',
     'popup/popup': './popup/popup.js'
   },
   mode: 'production',

@@ -1,0 +1,10 @@
+label {
+  display: inline-block;
+  width: 150px;
+}
+
+form span {
+  color: #aaa;
+  display: inline-block;
+  width: 100px;
+}
