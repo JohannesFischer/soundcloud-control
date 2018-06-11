@@ -34,7 +34,9 @@
     "eslint-plugin-standard": "^3.0.1",
     "web-ext": "^2.4.0",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
+    "webpack-cli": "^3.0.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "keycode": "^2.2.0"
+  }
 }
