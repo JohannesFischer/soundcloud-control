@@ -6,8 +6,8 @@ module.exports = {
   entry: {
     background: './background.js',
     content: './content.js',
-    'options/options': './options/options.js',
-    'popup/popup': './popup/popup.js'
+    'options/options': './options/index.js',
+    'popup/popup': './popup/index.js'
   },
   mode: 'production',
   module: {
