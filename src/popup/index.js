@@ -15,9 +15,9 @@ function updatePopup(state) {
     coverArtEl.style.backgroundImage = `url(${imageSrc})`
   })
 
-  document.querySelector('.artist p').innerText = artist
+  document.querySelector('.artist p').textContent = artist
   const songTitleEl = document.querySelector('.song-title p')
-  songTitleEl.innerText = songTitle
+  songTitleEl.textContent = songTitle
   songTitleEl.title = songTitle
 
   const playControl = document.querySelector('.control-playback-toggle')
