@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <h3>Custom Keyboard Shortcuts</h3>
+  <form>
+    <div class="browser-style">
+      <label>Toggle Playback</label>
+      <span></span>
+      <button class="browser-style" data-command="toggle-playback" disabled>Click to set</button>
+    </div>
+    <div class="browser-style">
+      <label for="command-previous-song">Previous Song</label>
+      <span></span>
+      <button class="browser-style" data-command="previous-song" disabled>Click to set</button>
+    </div>
+    <div class="browser-style">
+      <label for="command-next-song">Next Song</label>
+      <span></span>
+      <button class="browser-style" data-command="next-song" disabled>Click to set</button>
+    </div>
+    <button class="browser-style">Restore defaults</button>
+  </form>
+  <script src="options.bundle.js"></script>
+</body>
+</html>

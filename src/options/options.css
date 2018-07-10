@@ -1,0 +1,29 @@
+label {
+  display: inline-block;
+  width: 150px;
+}
+
+form span {
+  color: #aaa;
+  display: inline-block;
+  width: 150px;
+}
+
+.alert {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 0 1em;
+  white-space: pre;
+}
+
+.alert.error {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}

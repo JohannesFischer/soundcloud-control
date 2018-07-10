@@ -24,17 +24,20 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^7.1.5",
     "babel-preset-import-export": "^1.0.2",
     "eslint": "^4.19.0",
     "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^6.0.0",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "web-ext": "^2.4.0",
-    "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "web-ext": "^2.7.0",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
   },
-  "dependencies": {}
+  "dependencies": {
+    "keycode": "^2.2.0",
+    "regex-sort": "^1.0.6"
+  }
 }
