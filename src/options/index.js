@@ -1,23 +1,32 @@
 import keycode from 'keycode'
 import regexSort from 'regex-sort'
 
+let commands = {}
 const defaultCommands = {
   'next-song': 'Ctrl+Shift+7',
   'previous-song': 'Ctrl+Shift+5',
   'toggle-playback': 'Ctrl+Shift+6'
 }
-
-const shortCutPattern = [
-  /^\s*(Alt|Ctrl|Command|MacCtrl)\s*\+\s*(Shift\s*\+\s*)?([A-Z0-9]|Comma|Period|Home|End|PageUp|PageDown|Space|Insert|Delete|Up|Down|Left|Right)\s*$/,
-  /^\s*((Alt|Ctrl|Command|MacCtrl)\s*\+\s*)?(Shift\s*\+\s*)?(F[1-9]|F1[0-2])\s*$/,
-  /^(MediaNextTrack|MediaPlayPause|MediaPrevTrack|MediaStop)$/
-]
+let recording = false
 
 function testShortcut(shortcut) {
+  if (Object.values(commands).includes(shortcut)) return false
+
+  const shortCutPattern = [
+    /^\s*(Alt|Ctrl|Command|MacCtrl)\s*\+\s*(Shift\s*\+\s*)?([A-Z0-9]|Comma|Period|Home|End|PageUp|PageDown|Space|Insert|Delete|Up|Down|Left|Right)\s*$/,
+    /^\s*((Alt|Ctrl|Command|MacCtrl)\s*\+\s*)?(Shift\s*\+\s*)?(F[1-9]|F1[0-2])\s*$/,
+    /^(MediaNextTrack|MediaPlayPause|MediaPrevTrack|MediaStop)$/
+  ]
+
   return shortCutPattern.some(pattern => pattern.test(shortcut))
 }
 
 function getKeyName(which) {
+  const keyname = keycode(which)
+
+  if (keyname === ',') return 'comma'
+  else if (keyname === '.') return 'period'
+
   return which === 224 ? 'MacCtrl' : keycode(which)
 }
 
@@ -32,7 +41,10 @@ function createShortcutString(input) {
 }
 
 function recordKeys(button) {
+  if (recording) return
+
   const commandName = button.getAttribute('data-command')
+  recording = true
   setButtonText(commandName, 'Recording...')
   let keys = []
   let keyCount = 0
@@ -40,7 +52,7 @@ function recordKeys(button) {
   const handleKeyDown = (e) => {
     e.preventDefault()
 
-    if (keycode(e.which) === 'esc') {
+    if (getKeyName(e.which) === 'esc') {
       keyCount = 0
       return reset()
     }
@@ -58,7 +70,7 @@ function recordKeys(button) {
       reset()
 
       let shortcut = createShortcutString(keys)
-      // console.log('You pressed: ', shortcut)
+      console.log('You pressed: ', shortcut)
 
       if (testShortcut(shortcut)) {
         setCommand(commandName, shortcut)
@@ -72,6 +84,7 @@ function recordKeys(button) {
     document.removeEventListener('keydown', handleKeyDown)
     document.removeEventListener('keyup', handleKeyUp)
     setButtonText(commandName, 'Click to set')
+    recording = false
   }
 
   document.addEventListener('keydown', handleKeyDown)
@@ -124,6 +137,7 @@ function saveCommand(commandName, shortcut) {
           showAlert('Set shortcut successfully.', 'success')
           setButtonText(commandName, 'Click to set')
           setCommandText(commandName, shortcut)
+          commands[commandName] = shortcut
         })
     })
 }
@@ -167,7 +181,7 @@ function resetCommands() {
 
 function initOptions(storageCommands) {
   // TODO: get browser commands
-  const commands = Object.assign(defaultCommands, storageCommands)
+  commands = Object.assign(defaultCommands, storageCommands)
 
   Object.keys(defaultCommands).forEach(commandName => {
     const shortcut = commands[commandName]
@@ -193,7 +207,7 @@ function showAlert(text, type) {
 
   window.setTimeout(() => {
     document.querySelector('.alert').remove()
-  }, 5000)
+  }, 4000)
 }
 
 browser.storage.local.get('commands')
