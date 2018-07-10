@@ -7,7 +7,7 @@
   "author": "Johannes Fischer",
   "applications": {
     "gecko": {
-      "id": "soundcloud-control@addon.com",
+      "id": "{ecd8bf54-1dea-4415-9b5e-c9452d1255fe}",
       "strict_min_version": "60.0"
     }
   },
