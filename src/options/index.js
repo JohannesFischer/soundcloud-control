@@ -103,7 +103,7 @@ function setCommand(commandName, shortcut) {
 
   updateShortcut(commandName, shortcut)
     .then(() => saveCommand(commandName, shortcut))
-    .catch(error => {
+    .catch(() => {
       handleShortCutError()
     })
 }
@@ -116,15 +116,15 @@ function saveCommand(commandName, shortcut) {
     .then(result => {
       const commands = Object.assign(result.commands || {}, command)
 
-  browser.storage.local
-    .set({
-      commands
-    })
-    .then(() => {
+      browser.storage.local
+        .set({
+          commands
+        })
+        .then(() => {
           showAlert('Set shortcut successfully.', 'success')
-      setButtonText(commandName, 'Click to set')
-      setCommandText(commandName, shortcut)
-    })
+          setButtonText(commandName, 'Click to set')
+          setCommandText(commandName, shortcut)
+        })
     })
 }
 
@@ -148,16 +148,16 @@ function resetCommands() {
       let count = 0
 
       commands.forEach(commandName => {
-    const shortcut = getCommand(commandName)
+        const shortcut = getCommand(commandName)
 
-    browser.commands.reset(commandName)
+        browser.commands.reset(commandName)
           .then(() => {
             count++
             setCommandText(commandName, shortcut)
 
             if (count === commands.length) {
-  browser.storage.local.clear()
-}
+              browser.storage.local.clear()
+            }
           })
       })
     })
