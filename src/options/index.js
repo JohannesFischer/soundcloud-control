@@ -27,7 +27,7 @@ function getKeyName(which) {
   if (keyname === ',') return 'comma'
   else if (keyname === '.') return 'period'
 
-  return which === 224 ? 'MacCtrl' : keycode(which)
+  return which === 224 ? 'Command' : keyname
 }
 
 function createShortcutString(input) {
@@ -70,7 +70,7 @@ function recordKeys(button) {
       reset()
 
       let shortcut = createShortcutString(keys)
-      console.log('You pressed: ', shortcut)
+      // console.log('You pressed: ', shortcut)
 
       if (testShortcut(shortcut)) {
         setCommand(commandName, shortcut)
