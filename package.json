@@ -37,6 +37,7 @@
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
-    "keycode": "^2.2.0"
+    "keycode": "^2.2.0",
+    "regex-sort": "^1.0.6"
   }
 }

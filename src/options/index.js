@@ -1,4 +1,5 @@
 import keycode from 'keycode'
+import regexSort from 'regex-sort'
 
 const defaultCommands = {
   'next-song': 'Ctrl+Shift+7',
@@ -16,6 +17,20 @@ function testShortcut(shortcut) {
   return shortCutPattern.some(pattern => pattern.test(shortcut))
 }
 
+function getKeyName(which) {
+  return which === 224 ? 'MacCtrl' : keycode(which)
+}
+
+function createShortcutString(input) {
+  const keys = input.map(key => capitalize(getKeyName(key)))
+
+  return regexSort(keys, [
+    /(Alt|Ctrl|Command|MacCtrl)/,
+    /Shift/,
+    /([F[1-9]|F1[0-2]|A-Z0-9]|Comma|Period|Home|End|PageUp|PageDown|Space|Insert|Delete|Up|Down|Left|Right)/
+  ]).join('+')
+}
+
 function recordKeys(button) {
   const commandName = button.getAttribute('data-command')
   setButtonText(commandName, 'Recording...')
@@ -25,9 +40,13 @@ function recordKeys(button) {
   const handleKeyDown = (e) => {
     e.preventDefault()
 
+    if (keycode(e.which) === 'esc') {
+      keyCount = 0
+      return reset()
+    }
+
     if (!keys.includes(e.which)) {
       keyCount++
-      // console.log(keycode(e.which))
       keys.push(e.which)
     }
   }
@@ -36,12 +55,10 @@ function recordKeys(button) {
     keyCount--
 
     if (keyCount === 0) {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('keyup', handleKeyUp)
-      // TODO: handle MacCtrl 224
-      let shortcut = keys.map(key => capitalize(keycode(key))).join('+')
-      console.log('You pressed: ', shortcut)
-      setButtonText(commandName, 'Click to set')
+      reset()
+
+      let shortcut = createShortcutString(keys)
+      // console.log('You pressed: ', shortcut)
 
       if (testShortcut(shortcut)) {
         setCommand(commandName, shortcut)
@@ -49,6 +66,12 @@ function recordKeys(button) {
         handleShortCutError()
       }
     }
+  }
+
+  const reset = () => {
+    document.removeEventListener('keydown', handleKeyDown)
+    document.removeEventListener('keyup', handleKeyUp)
+    setButtonText(commandName, 'Click to set')
   }
 
   document.addEventListener('keydown', handleKeyDown)
@@ -72,7 +95,7 @@ function capitalize(str) {
 }
 
 function handleShortCutError() {
-  console.error('failed setting shortcut')
+  showAlert('Failed to set shortcut.', 'error')
 }
 
 function setCommand(commandName, shortcut) {
@@ -81,23 +104,27 @@ function setCommand(commandName, shortcut) {
   updateShortcut(commandName, shortcut)
     .then(() => saveCommand(commandName, shortcut))
     .catch(error => {
-      console.error(error)
       handleShortCutError()
     })
 }
 
 function saveCommand(commandName, shortcut) {
-  const commands = {}
-  commands[commandName] = shortcut
-  console.log('setting: ', commands)
+  const command = {}
+  command[commandName] = shortcut
+
+  browser.storage.local.get('commands')
+    .then(result => {
+      const commands = Object.assign(result.commands || {}, command)
 
   browser.storage.local
     .set({
       commands
     })
     .then(() => {
+          showAlert('Set shortcut successfully.', 'success')
       setButtonText(commandName, 'Click to set')
       setCommandText(commandName, shortcut)
+    })
     })
 }
 
@@ -115,14 +142,25 @@ function getCommand(commandName) {
 }
 
 function resetCommands() {
-  Object.keys(defaultCommands).forEach(commandName => {
+  browser.storage.local.get('commands')
+    .then(result => {
+      const commands = Object.keys(result.commands)
+      let count = 0
+
+      commands.forEach(commandName => {
     const shortcut = getCommand(commandName)
 
     browser.commands.reset(commandName)
-      .then(() => setCommandText(commandName, shortcut))
-  })
+          .then(() => {
+            count++
+            setCommandText(commandName, shortcut)
 
+            if (count === commands.length) {
   browser.storage.local.clear()
+}
+          })
+      })
+    })
 }
 
 // Init options
@@ -144,9 +182,22 @@ function initOptions(storageCommands) {
   })
 }
 
+function showAlert(text, type) {
+  const form = document.querySelector('form')
+
+  const container = document.createElement('div')
+  container.className = `alert ${type}`
+  container.textContent = text
+
+  form.parentNode.insertBefore(container, form)
+
+  window.setTimeout(() => {
+    document.querySelector('.alert').remove()
+  }, 5000)
+}
+
 browser.storage.local.get('commands')
   .then(result => {
-    console.log(result)
     initOptions(result.commands || {})
   })
 

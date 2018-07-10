@@ -1,13 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SoundCloud Control",
-<<<<<<< HEAD
   "version": "0.5.3",
-||||||| merged common ancestors
-  "version": "0.5.2",
-=======
-  "version": "0.6.0",
->>>>>>> add option page, basic functionality to change key bindings
   "description": "Control SoundCloud player controls without switching tabs",
   "homepage_url": "https://github.com/johannesfischer/soundcloud-control/",
   "author": "Johannes Fischer",
