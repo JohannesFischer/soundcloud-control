@@ -11,8 +11,8 @@
     "lint:ext": "web-ext lint",
     "lint:js": "eslint ./src/",
     "build:ext": "web-ext build",
-    "build:js": "webpack --config webpack.config.js",
-    "build:js:watch": "webpack --config webpack.config.js --watch",
+    "build:js": "webpack",
+    "build:js:watch": "webpack --watch",
     "test": "npm run lint:ext && npm run lint:js"
   },
   "keywords": [
@@ -28,13 +28,13 @@
     "babel-preset-import-export": "^1.0.2",
     "eslint": "^4.19.0",
     "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "web-ext": "^2.7.0",
-    "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
+    "web-ext": "^2.9.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "keycode": "^2.2.0",
