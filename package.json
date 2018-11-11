@@ -24,17 +24,16 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "babel-loader": "^7.1.5",
-    "babel-preset-import-export": "^1.0.2",
+    "copy-webpack-plugin": "^4.6.0",
     "eslint": "^4.19.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "web-ext": "^2.7.0",
-    "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
+    "web-ext": "^2.9.3",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   },
   "dependencies": {
     "keycode": "^2.2.0",
