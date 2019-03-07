@@ -1,4 +1,5 @@
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const srcFolder = path.join(__dirname, 'src')
 
 module.exports = {
@@ -10,19 +11,19 @@ module.exports = {
     'popup/popup': './popup/index.js'
   },
   mode: 'production',
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: ['babel-loader'],
-        exclude: path.join(__dirname, 'node_modules')
-      }
-    ]
-  },
   output: {
-    filename: '[name].bundle.js',
-    path: srcFolder
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'build/extension')
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      './manifest.json',
+      './**/*.html',
+      './**/*.css',
+      './**/*.png',
+      './**/*.svg'
+    ])
+  ],
   resolve: {
     alias: {
       src: srcFolder

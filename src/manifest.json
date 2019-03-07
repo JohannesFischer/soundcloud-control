@@ -32,11 +32,11 @@
     "default_popup": "popup/popup.html"
   },
   "background": {
-    "scripts": ["background.bundle.js"]
+    "scripts": ["background.js"]
   },
   "content_scripts": [{
     "matches": ["*://*.soundcloud.com/*"],
-    "js": ["content.bundle.js"],
+    "js": ["content.js"],
     "run_at": "document_end"
   }],
   "commands": {
