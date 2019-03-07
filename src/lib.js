@@ -10,7 +10,8 @@ const commands = {
 
 async function executeCommand(message, callback = null) {
   const scTabs = await browser.tabs.query({
-    url: soundCloudUrl
+    url: soundCloudUrl,
+    discarded: false
   })
 
   if (scTabs.length === 0) {
