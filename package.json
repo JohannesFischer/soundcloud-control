@@ -11,8 +11,8 @@
     "lint:ext": "web-ext lint",
     "lint:js": "eslint ./src/",
     "build:ext": "web-ext build",
-    "build:js": "webpack --config webpack.config.js",
-    "build:js:watch": "webpack --config webpack.config.js --watch",
+    "build:js": "webpack",
+    "build:js:watch": "webpack --watch",
     "test": "npm run lint:ext && npm run lint:js"
   },
   "keywords": [
@@ -27,7 +27,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "eslint": "^4.19.0",
     "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
