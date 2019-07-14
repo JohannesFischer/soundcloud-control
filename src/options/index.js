@@ -46,7 +46,7 @@ function recordKeys(button) {
   const commandName = button.getAttribute('data-command')
   recording = true
   setButtonText(commandName, 'Recording...')
-  let keys = []
+  const keys = []
   let keyCount = 0
 
   const handleKeyDown = (e) => {
@@ -69,7 +69,7 @@ function recordKeys(button) {
     if (keyCount === 0) {
       reset()
 
-      let shortcut = createShortcutString(keys)
+      const shortcut = createShortcutString(keys)
       // console.log('You pressed: ', shortcut)
 
       if (testShortcut(shortcut)) {
