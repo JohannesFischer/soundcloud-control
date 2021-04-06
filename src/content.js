@@ -1,4 +1,4 @@
-import { commands } from 'src/lib'
+import { commands } from './lib.js'
 
 function getPlayControls() {
   return document.querySelector('.playControls')
@@ -8,32 +8,31 @@ function getSoundBadge() {
   return document.querySelector('.playControls__soundBadge')
 }
 
-browser.runtime.onMessage.addListener((msg, sender, response) => {
-  const { from, subject, goTo } = msg
-
-  if (!['command', 'popup'].includes(from)) return
-
+browser.runtime.onMessage.addListener(({ from, subject, goTo }, sender, response) => {
+  const { activateTab, nextSong, previousSong, toggleLike, togglePlayback } = commands
   const playControls = getPlayControls()
   const soundBadge = getSoundBadge()
 
+  if (!['command', 'popup'].includes(from) || !playControls || !soundBadge) return
+
   switch (subject) {
-    case commands.togglePlayback: {
+    case togglePlayback: {
       playControls.querySelector('.playControls__play').click()
       break
     }
-    case commands.previousSong: {
+    case previousSong: {
       playControls.querySelector('.playControls__prev').click()
       break
     }
-    case commands.nextSong: {
+    case nextSong: {
       playControls.querySelector('.playControls__next').click()
       break
     }
-    case commands.toggleLike: {
+    case toggleLike: {
       soundBadge.querySelector('.sc-button-like').click()
       break
     }
-    case commands.activateTab: {
+    case activateTab: {
       if (goTo === 'artist') {
         soundBadge.querySelector('.playbackSoundBadge__titleContextContainer a').click()
       }
@@ -52,6 +51,9 @@ browser.runtime.onMessage.addListener((msg, sender, response) => {
 function getState() {
   const playControls = getPlayControls()
   const soundBadge = getSoundBadge()
+
+  if (!playControls || !soundBadge) return false
+
   const artist = soundBadge.querySelector('.playbackSoundBadge__titleContextContainer a').title
   const songTitle = soundBadge.querySelector('.playbackSoundBadge__titleLink').title
   const imageUrl = soundBadge.querySelector('.image span').style.backgroundImage.match(/url\("(.*)"\)/)[1]

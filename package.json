@@ -1,18 +1,17 @@
 {
   "name": "soundcloud-control",
-  "version": "0.5.3",
+  "version": "0.7.0",
   "description": "SoundCloud Control browser extension",
   "repository": {
     "type": "git",
     "url": "https://github.com/JohannesFischer/soundcloud-control.git"
   },
   "scripts": {
-    "ff": "web-ext run --bc",
+    "start": "web-ext run --bc",
     "lint:ext": "web-ext lint",
     "lint:js": "eslint ./src/",
+    "build": "rollup -c",
     "build:ext": "web-ext build",
-    "build:js": "webpack",
-    "build:js:watch": "webpack --watch",
     "test": "npm run lint:ext && npm run lint:js"
   },
   "keywords": [
@@ -24,19 +23,12 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "copy-webpack-plugin": "^5.0.3",
-    "eslint": "^6.0.1",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "web-ext": "^3.1.0",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "eslint": "^6.8.0",
+    "eslint-config-esnext": "^4.1.0",
+    "rollup": "^2.44.0",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "web-ext": "^6.0.0"
   },
-  "dependencies": {
-    "keycode": "^2.2.0",
-    "regex-sort": "^1.0.6"
-  }
+  "dependencies": {}
 }

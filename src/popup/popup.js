@@ -1,4 +1,4 @@
-import { commands, executeCommand } from 'src/lib'
+import { commands, executeCommand } from '../lib.js'
 
 function updatePopup(state) {
   if (!state) return window.close()

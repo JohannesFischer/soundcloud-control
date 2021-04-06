@@ -1,6 +1,6 @@
-import { commands, executeCommand } from 'src/lib'
+import { commands, executeCommand } from './lib.js'
 
-browser.commands.onCommand.addListener(function(command) {
+browser.commands.onCommand.addListener((command) => {
   if (!Object.values(commands).includes(command)) return
 
   executeCommand({ from: 'command', subject: command })

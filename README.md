@@ -4,12 +4,12 @@ A browser extension that lets you control the SoundCloud player without switchin
 
 ![Screenshot](screenshot.png)
 
-__Features:__
+## Features
 * Easily toggle playback or skip songs from the popup or via keyboard shortcut
 * Open SoundCloud in a new tab if not open yet
 * Like and unlike the song you are currently listening to from the popup
 
-__Keyboard Shortcuts:__
+## Keyboard Shortcuts
 
 Toggle SoundCloud playback
 
@@ -23,28 +23,15 @@ Skip to next song on SoundCloud
 
 `Shift` + `Ctrl` + `7`
 
-Due to the varying default shortcuts on different operating system and user preference shortcuts can be changed in the addon preferences.
+Shortcuts can be updated via the "Manage Extension Shortcuts" option at about:addons in Firefox. Please refer to the [support center](https://support.mozilla.org/en-US/kb/manage-extension-shortcuts-firefox) for more information.
 
-Keyboard shortcuts should consist of two or three keys:
 
-  * __modifier__ This can be any of: "Ctrl", "Alt", "Command", "MacCtrl".
-  * __secondary modifier (optional)__ For now only the *Shift* key is supported
-  * __key (mandatory)__ This can be any one of:
-    * the letters A-Z
-    * the numbers 0-9
-    * the function keys F1-F12
-    * Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right
+## Development
 
-__Note:__ If a key combination is already used by the browser, or by an existing add-on, then you can't override it. You will be allowed to define it, but your event handler will not be called when the user enters it. On Mac the Command or `⌘` key might fail to register in that case recording can be canceled by pressing `esc`.
-
-### Development
-
-```
+```bash
 npm install
-npm run build:js
-# or to watch changes
-npm run build:js:watch
-npm run ff
+npm run build
+npm start
 ```
 
 All Icons used are taken from [iconmonstr](https://iconmonstr.com/).

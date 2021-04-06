@@ -1,10 +1,7 @@
 module.exports = {
-  "extends": "standard",
+  "extends": "esnext",
   "env": {
     "browser": true,
     "webextensions": true
-  },
-  "rules": {
-    "space-before-function-paren": 0
   }
 };
