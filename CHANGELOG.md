@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to manage keyboard shortcuts in favor of Firefox shortcut manager
 ### Added
 - Added `test` script running ESLint and web-ext lint
-### Chnaged
+### Changed
 - Replaced Webpack with Rollup as bundler
 - Replaced ESLint config standard with `recommended/esnext`
 - Changed `build:js` sript to `build`
